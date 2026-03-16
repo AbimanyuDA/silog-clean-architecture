@@ -1,6 +1,6 @@
 # SILOG - Integrated Logistics SaaS Platform
 
-Proyek ini adalah platform Software as a Service (SaaS) untuk Sistem Manajemen Logistik dan Rantai Pasok yang terintegrasi. [cite_start]Platform ini dikembangkan secara kolaboratif oleh 4 tim Capstone (CAPS17 - CAPS20) untuk menciptakan ekosistem logistik yang efisien, transparan, dan cerdas.
+Proyek ini adalah platform Software as a Service (SaaS) untuk Sistem Manajemen Logistik dan Rantai Pasok yang terintegrasi. Platform ini dikembangkan secara kolaboratif oleh 4 tim Capstone (CAPS17 - CAPS20) untuk menciptakan ekosistem logistik yang efisien, transparan, dan cerdas.
 
 ## Arsitektur Proyek
 Sesuai arahan teknis, proyek ini menggunakan pendekatan:
@@ -76,3 +76,33 @@ Tujuan: Memisahkan logika bisnis antar tim agar independen namun tetap dalam sat
 ├── assets/                 # Folder aset gambar, icon, font
 └── pubspec.yaml            # Manajemen dependency Flutter
 ```
+
+## Aturan Pengembangan (Development Rules)
+Guna memastikan integrasi yang lancar antara 4 tim pengembang, seluruh anggota wajib mematuhi protokol berikut:
+
+---
+
+### 1. Prinsip *Loosely Coupled*
+Untuk menjaga fleksibilitas dan mempermudah pemeliharaan, dilarang keras melakukan **import langsung** antar modul di *backend*.
+* **Protokol:** Komunikasi antar modul wajib melalui **Interface** yang didefinisikan pada folder `shared/domain`.
+* **Tujuan:** Meminimalisir ketergantungan sehingga perubahan di satu modul tidak merusak modul lainnya.
+
+### 2. Pendekatan *API First*
+Tim Backend dan Frontend harus berjalan selaras melalui kontrak yang jelas.
+* **Protokol:** Tim Backend wajib memperbarui kontrak API di folder `api/` sebelum pengembangan fitur dimulai.
+* **Manfaat:** Tim Frontend dapat bekerja secara paralel menggunakan **mock data** tanpa menunggu logika backend selesai.
+
+### 3. Integritas Domain (*Domain Integrity*)
+Setiap modul harus memiliki batasan tanggung jawab yang tegas (*Separation of Concerns*).
+* **Protokol:** Logika bisnis **Warehouse** dilarang ditulis di dalam modul **Transportation**, dan sebaliknya.
+* **Tujuan:** Mencegah terjadinya *spaghetti code* dan mempermudah proses *debugging*.
+
+### 4. K3 & Kepatuhan (*Compliance*)
+Fitur pelacakan (*tracking*) harus mengakomodasi regulasi keselamatan kerja sesuai dokumen proses bisnis.
+* **Protokol:** Implementasikan fitur **Notifikasi Istirahat Otomatis** pada sistem pelacakan.
+* **Tujuan:** Memastikan kepatuhan operasional Silog terhadap standar keselamatan kerja (K3).
+
+---
+
+> [!IMPORTANT]
+> Pelanggaran terhadap aturan ini dapat menghambat proses integrasi pada tahap akhir. Mohon lakukan *peer review* secara berkala pada setiap *Pull Request*.
