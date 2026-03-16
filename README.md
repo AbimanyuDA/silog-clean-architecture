@@ -14,6 +14,7 @@ Sesuai arahan teknis, proyek ini menggunakan pendekatan:
 
 Tujuan: Memisahkan logika bisnis antar tim agar independen namun tetap dalam satu ekosistem.
 
+```text
 /backend
 ├── cmd/
 │   └── api/                # Entry point aplikasi (main.go)
@@ -74,3 +75,4 @@ Tujuan: Memisahkan logika bisnis antar tim agar independen namun tetap dalam sat
 │       └── theme/          # Konfigurasi Tema & Warna
 ├── assets/                 # Folder aset gambar, icon, font
 └── pubspec.yaml            # Manajemen dependency Flutter
+```
